@@ -1,0 +1,77 @@
+## Ignore build output
+bin/
+obj/
+out/
+artifacts/
+
+## User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+## IDE-specific
+# Visual Studio
+.vs/
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Rider
+.idea/
+
+## ASP.NET / .NET Core specific
+project.lock.json
+project.fragment.lock.json
+project.json.user
+*.pidb
+*.svclog
+*.scc
+
+## Logs
+*.log
+logs/
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+# except when you have packages checked in
+!packages/build/
+!packages/repositories.config
+
+## Build artifacts
+*.dll
+*.exe
+*.app
+*.db
+*.pdb
+
+## Publish output
+publish/
+wwwroot/lib/
+
+## Temporary files
+tmp/
+temp/
+*.tmp
+
+## Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## Azure
+PublishProfiles/
+*.pubxml
+*.publishsettings
+
+## EF Core
+migrations/*Snapshot.cs
+
+## Other
+*.DS_Store
+Thumbs.db
