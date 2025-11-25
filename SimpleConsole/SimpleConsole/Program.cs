@@ -59,7 +59,7 @@ class Program
         //      * подсчитать количество задач с низким приоритетом (2 и ниже)
         //      * найти задачу с максимальным приоритетом
         //      * вернуть результаты
-
+        int i = 0;
         int amountHighPriority = 0;
         int amountLowPriority = 0;
         foreach(var task in tasks)
