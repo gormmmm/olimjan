@@ -1,4 +1,6 @@
-﻿namespace TasksSet1;
+﻿using System;
+
+namespace TasksSet1;
 
 internal class Program
 {
@@ -16,7 +18,7 @@ internal class Program
         // Task8();
         // Task9();
         // Task10();
-        // Task11();
+         Task11();
         // Task12();
         // Task13();
         // Task14();
@@ -43,7 +45,19 @@ internal class Program
     {
         Console.WriteLine("Task 1: Cinema ticket price.");
 
-        // TODO:
+        int userAge = int.Parse(Console.ReadLine());
+        if (userAge < 5)
+        {
+            Console.WriteLine("Ticket is free");
+        }
+        else if (userAge >= 5 && userAge <= 18)
+        {
+            Console.WriteLine("Price 8");
+        }
+        else
+        {
+            Console.WriteLine("Ticket is 12");
+        }// TODO:
         // 1. Read age (int).
         // 2. Use if/else if/else to determine price.
         // 3. Print the price with a short message.
@@ -61,6 +75,23 @@ internal class Program
     public static void Task2()
     {
         Console.WriteLine("Task 2: Thermostat suggestion.");
+        Console.WriteLine("Please enter the temperature:");
+        int temperatureHouse = int.Parse(Console.ReadLine());
+        if (temperatureHouse < 18)
+        {
+            Console.WriteLine("It's cold, turn on heating.");
+        }
+        else if (temperatureHouse >= 18 && temperatureHouse <= 24)
+        {
+            Console.WriteLine("Temperature is comfortable.");
+        }
+
+        else
+        {
+            Console.WriteLine("It's warm, maybe open a window.");
+        }
+
+
 
         // TODO:
         // 1. Read temperature (double).
@@ -80,6 +111,23 @@ internal class Program
     public static void Task3()
     {
         Console.WriteLine("Task 3: Bank overdraft check.");
+        Console.WriteLine("Please enter the current balance:");
+
+        int currentBalance = int.Parse(Console.ReadLine());
+        Console.WriteLine("Please enter the amount you want to withdaw:");
+
+        int paymentAmount = int.Parse(Console.ReadLine());
+
+        if (currentBalance < paymentAmount)
+        {
+            Console.WriteLine("Payment denied: not enough funds.");
+        }
+        else
+        {
+            Console.WriteLine($"Payment accepted. Remaining balance: {currentBalance-paymentAmount}");
+        }
+
+
 
         // TODO:
         // 1. Read balance (double).
@@ -101,6 +149,21 @@ internal class Program
     public static void Task4()
     {
         Console.WriteLine("Task 4: Role-based greeting.");
+        Console.WriteLine("Please enter the preffered role:");
+
+        string prefferedRole = Console.ReadLine();
+        if (prefferedRole == "admin")
+        {
+            Console.WriteLine("Welcome, administrator!");
+        }
+        else if(prefferedRole=="manager")
+        {
+            Console.WriteLine("Hello, manager!");
+        }
+        else 
+        {
+            Console.WriteLine("Hello, user!");
+        }
 
         // TODO:
         // 1. Read role (string).
@@ -123,6 +186,35 @@ internal class Program
     public static void Task5()
     {
         Console.WriteLine("Task 5: Exam grade description.");
+
+        Console.WriteLine("Please enter the score:");
+        int examScore = int.Parse(Console.ReadLine());
+
+        if (examScore < 0 && examScore < 100)
+        {
+            Console.WriteLine("Invalid Score !");
+        }
+        else if (examScore >= 90 && examScore <= 100)
+        {
+            Console.WriteLine("Grade A !");
+        }
+        else if (examScore >= 75 && examScore <= 89)
+        {
+            Console.WriteLine("Grade B !");
+        }
+        else if (examScore >= 60 && examScore <= 74)
+        {
+            Console.WriteLine("Grade C !");
+        }
+        else if (examScore >= 40 && examScore <= 59)
+        {
+            Console.WriteLine("Grade D !");
+        }
+        else if (examScore >= 0 && examScore <= 39)
+        {
+            Console.WriteLine("Grade F !");
+        }
+
 
         // TODO:
         // 1. Read score (int).
@@ -148,6 +240,17 @@ internal class Program
     public static void Task6()
     {
         Console.WriteLine("Task 6: Total daily sales.");
+        int daysNumber = int.Parse(Console.ReadLine());
+        int totalSales = 0;
+        for (int i = 0; i < daysNumber; i++)
+        {
+            int saleAmount = int.Parse(Console.ReadLine());
+            totalSales=totalSales + saleAmount;
+            
+        }
+        Console.WriteLine($"Total amount:{totalSales}");
+        Console.WriteLine($"Everage:{totalSales / daysNumber}");
+
 
         // TODO:
         // 1. Read number of days (int).
@@ -169,6 +272,34 @@ internal class Program
     public static void Task7()
     {
         Console.WriteLine("Task 7: Counting even numbers.");
+        Console.WriteLine("Please enter the number of the list:");
+         
+
+
+        if (!int.TryParse(Console.ReadLine(), out int listLenth) || listLenth <= 0)
+        {
+            Console.WriteLine("Invalid input. Please enter a positive integer.");
+            return;
+        }
+
+        int[] evenNumbers = new int[listLenth];
+
+        for (int i = 0; i < listLenth; i++)
+        {
+            Console.Write($"Enter element {i + 1}: ");
+            while (!int.TryParse(Console.ReadLine(), out evenNumbers[i]))
+            {
+                Console.Write("Invalid input. Please enter an integer: ");
+            }
+        }
+
+        for (int i = 0; i < listLenth; i++)
+        {
+            if (evenNumbers[i] % 2 == 0) 
+            {
+                Console.WriteLine(evenNumbers[i]);
+            }
+        }
 
         // TODO:
         // 1. Read N (int).
@@ -177,7 +308,7 @@ internal class Program
         // 4. Use a loop to count how many are even (number % 2 == 0).
         // 5. Print the count.
     }
-
+    
     /// <summary>
     /// Task 8 (loops).
     /// Multiplication table.
@@ -192,6 +323,17 @@ internal class Program
     public static void Task8()
     {
         Console.WriteLine("Task 8: Multiplication table.");
+        Console.WriteLine("Please enter the number:");
+
+        int multNumber =int.Parse(Console.ReadLine());
+        int[] resultMult = new int[11];
+        for (int i = 1; i < 11; i++)
+        {
+             
+                Console.WriteLine($"{multNumber} x {i} ={multNumber*i}");
+            
+        }
+
 
         // TODO:
         // 1. Read X (int).
@@ -212,6 +354,20 @@ internal class Program
     {
         Console.WriteLine("Task 9: Monthly savings plan.");
 
+        Console.WriteLine("Please enter monthly saving amount:");
+
+        double monthlyAmount = Convert.ToDouble(Console.ReadLine());
+        double balance = 0;
+        Console.WriteLine("Please enter number of the months:");
+        int numberMonth = int.Parse(Console.ReadLine());
+
+        for (int month = 1; month <= numberMonth; month++)
+        {
+            balance += monthlyAmount;
+            Console.WriteLine($"Month {month}: Balance = {balance}");
+        }
+
+           
         // TODO:
         // 1. Read monthly amount (double).
         // 2. Read number of months (int).
@@ -232,6 +388,21 @@ internal class Program
     public static void Task10()
     {
         Console.WriteLine("Task 10: Reverse a string.");
+        string reverseWord = Console.ReadLine();
+
+        for (int i = reverseWord.Length-1; i >= 0; i--)
+        {
+            Console.Write(reverseWord[i]);
+ 
+        }
+
+        Console.WriteLine();
+
+
+
+
+
+
 
         // TODO:
         // 1. Read input string.
@@ -262,6 +433,25 @@ internal class Program
     public static void Task11()
     {
         Console.WriteLine("Task 11: Prime number counter.");
+
+        Console.WriteLine("Please enter the numbers:");
+
+
+        int number;
+
+        do
+        {
+            Console.Write("Enter a number (0 to stop): ");
+            number = int.Parse(Console.ReadLine());
+
+            if (number != 0)
+            {
+                Console.WriteLine($"You entered: {number}");
+                int isPrimeCheck = IsPrime(number);
+            }
+
+        } while (number != 0);
+         
 
         // TODO in this method:
         // 1. Implement IsPrime(int n) method (outside Task11).
@@ -385,10 +575,21 @@ internal class Program
     // should be implemented here in the Program class as static methods.
     // For example:
     //
-    // static bool IsPrime(int n)
-    // {
-    //     // TODO: implementation by student
-    // }
+    static bool IsPrime(int n)
+    {
+
+        for (int i = 2; i < n; i++)
+        {
+
+            if (n % i == 0)
+            {
+                return false;
+            }
+           
+        }
+        return true;
+        // todo: implementation by student
+    }
     //
     // static double ConvertCelsiusToFahrenheit(double celsius)
     // {
