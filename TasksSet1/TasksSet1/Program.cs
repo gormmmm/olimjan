@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Numerics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TasksSet1;
 
@@ -18,13 +20,13 @@ internal class Program
         // Task8();
         // Task9();
         // Task10();
-         Task11();
+        // Task11();
         // Task12();
         // Task13();
         // Task14();
-        // Task15();
+         Task15();
 
-        Console.WriteLine("Select a task in Main and uncomment TaskN() call.");
+       // Console.WriteLine("Select a task in Main and uncomment TaskN() call.");
     }
 
     // =========================================================
@@ -436,7 +438,7 @@ internal class Program
 
         Console.WriteLine("Please enter the numbers:");
 
-
+        List<int> numbers = new List<int>();
         int number;
 
         do
@@ -444,15 +446,14 @@ internal class Program
             Console.Write("Enter a number (0 to stop): ");
             number = int.Parse(Console.ReadLine());
 
-            if (number != 0)
+            if (IsPrime(number) && number!=0)
             {
-                Console.WriteLine($"You entered: {number}");
-                int isPrimeCheck = IsPrime(number);
+                numbers.Add(number);
             }
 
         } while (number != 0);
-         
-
+        Console.WriteLine("Prime numbers are:");
+        Console.WriteLine(string.Join(", ", numbers)); 
         // TODO in this method:
         // 1. Implement IsPrime(int n) method (outside Task11).
         // 2. Here, read numbers in a loop until 0 is entered.
@@ -477,6 +478,22 @@ internal class Program
     public static void Task12()
     {
         Console.WriteLine("Task 12: Temperature conversion with helper method.");
+        Console.WriteLine("Please enter how many temperature values do you want to convert:");
+        int celsiusNumber = int.Parse(Console.ReadLine());
+        double celsiusValue;
+        Console.WriteLine("Please enter the temperature values in celsius:");
+        List<(double ValueCelsius, double ValueFahrenheit)> tempereture = new List<(double, double)>();
+        for (int i = 0; i < celsiusNumber; i++)
+        {
+            celsiusValue = int.Parse(Console.ReadLine());
+            tempereture.Add((celsiusValue, ConvertCelsiusToFahrenheit(celsiusValue)));
+        }
+
+
+      
+
+        Console.WriteLine("Values are:");
+        Console.WriteLine(string.Join(", ", tempereture));
 
         // TODO:
         // 1. Implement ConvertCelsiusToFahrenheit(double celsius).
@@ -504,7 +521,32 @@ internal class Program
     public static void Task13()
     {
         Console.WriteLine("Task 13: Shopping cart with discount method.");
+        Console.WriteLine("Please enter how many prices do you want to apply disscount:");
+        int quantityPrice = int.Parse(Console.ReadLine());
+     
+        double priceValue, discountedrate;
+        List<(double price, double disscountedrate)> finalprice = new List<(double, double)>();
+        for (int i = 0; i < quantityPrice; i++)
+        {
 
+            Console.WriteLine("Please enter the price:");
+            priceValue = double.Parse(Console.ReadLine());
+            Console.WriteLine("Please enter disscounted rate:");
+            discountedrate = double.Parse(Console.ReadLine());
+            finalprice.Add((priceValue, CalculateDiscountedPrice(priceValue, discountedrate)));
+        }
+       
+        Console.WriteLine($"{"Price:",-10}{"Disscounted:",-5}");
+        Console.WriteLine(new string('-', 25));
+         
+
+        for (int i = 0; i < finalprice.Count; i++)
+        {
+
+            Console.WriteLine(finalprice[i]);
+        }
+
+      
         // TODO:
         // 1. Implement CalculateDiscountedPrice(double price, double discountPercent).
         // 2. In this method, read number of products.
@@ -532,6 +574,29 @@ internal class Program
     public static void Task14()
     {
         Console.WriteLine("Task 14: Name normalization.");
+        Console.WriteLine("Please enter how many words do you want to normalize:");
+        int quantityWord = int.Parse(Console.ReadLine());
+
+        string stringName;
+
+        List<(string name, string normalizedName)> nameList = new List<(string, string)>();
+        for (int i = 0; i < quantityWord; i++)
+        {
+
+            Console.WriteLine("Please enter the name:");
+            stringName =  Console.ReadLine();
+            nameList.Add((stringName, NormalizeName(stringName)));
+        }
+
+        Console.WriteLine($"{"Name:",-10}{"Normalized name:",-5}");
+        Console.WriteLine(new string('-', 25));
+
+
+        for (int i = 0; i < nameList.Count; i++)
+        {
+            Console.WriteLine(nameList[i]);
+        }
+
 
         // TODO:
         // 1. Implement NormalizeName(string name).
@@ -562,6 +627,63 @@ internal class Program
     {
         Console.WriteLine("Task 15: BMI calculator for multiple people.");
 
+        Console.WriteLine("Please enter how many people do you want to count BMI:");
+        int quantityPeople = int.Parse(Console.ReadLine()); 
+
+        double weightBMI, heightBMI;
+        string name;
+        string resultComent="";
+        List<(string name,double bmi, string resultComment)> resultBMI = new List<(string,double, string)>();
+        for (int i = 0; i < quantityPeople; i++)
+        {
+            Console.WriteLine("Please enter the name:");
+            name = Console.ReadLine();
+            Console.WriteLine("Please enter the weight:");
+            weightBMI = double.Parse(Console.ReadLine());
+            Console.WriteLine("Please enter the height:");
+            heightBMI = double.Parse(Console.ReadLine());
+            
+
+            if (CalculateBmi(weightBMI, heightBMI) < 18.5)
+
+            {
+                resultComent = "Underweight"; 
+            }
+
+            if (CalculateBmi(weightBMI, heightBMI) < 25 && CalculateBmi(weightBMI, heightBMI)>=18.5)
+
+            {
+                resultComent = "Normal";
+            }
+
+            if (CalculateBmi(weightBMI, heightBMI) >= 25 && CalculateBmi(weightBMI, heightBMI) < 30)
+
+            {
+                resultComent = "Overweight";
+            }
+
+            if (CalculateBmi(weightBMI, heightBMI) >= 30)
+
+            {
+                resultComent = "Obese";
+            }
+
+
+            resultBMI.Add((name,CalculateBmi(weightBMI, heightBMI), resultComent));
+        }
+
+        Console.WriteLine($"{"Name:",-10}{"BMI:",-10}{"BMI Comment:",-15}");
+        Console.WriteLine(new string('-', 25));
+
+
+        for (int i = 0; i < resultBMI.Count; i++)
+        {
+
+            Console.WriteLine(resultBMI[i]);
+        }
+
+
+
         // TODO:
         // 1. Implement CalculateBmi(double weightKg, double heightMeters).
         // 2. In this method, read number of people.
@@ -575,6 +697,33 @@ internal class Program
     // should be implemented here in the Program class as static methods.
     // For example:
     //
+
+    static double CalculateBmi(double weightKg, double heightMeters)
+    {
+        if (weightKg <= 0)
+            throw new ArgumentException("Weight must be greater than zero.", nameof(weightKg));
+
+        if (heightMeters <= 0)
+            throw new ArgumentException("Height must be greater than zero.", nameof(heightMeters));
+
+        return weightKg / (heightMeters * heightMeters);
+    }
+
+
+
+    static string NormalizeName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return string.Empty;
+
+        name = name.Trim().ToLowerInvariant();
+        name = name.Replace(" ", "");
+        return char.ToUpperInvariant(name[0]) + name.Substring(1);
+    }
+
+
+
+
     static bool IsPrime(int n)
     {
 
@@ -589,6 +738,23 @@ internal class Program
         }
         return true;
         // todo: implementation by student
+    }
+
+
+
+    static double CalculateDiscountedPrice(double price, double discountPercent)
+
+    {
+        return (price-price*discountPercent/100);
+    }
+
+
+
+    static double ConvertCelsiusToFahrenheit(double celsius)
+
+    {
+        return (celsius * 9 / 5) + 32;
+
     }
     //
     // static double ConvertCelsiusToFahrenheit(double celsius)
